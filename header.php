@@ -1,136 +1,146 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="shortcut icon" href="images/icon.png" type="image/x-icon"/>
-        <title>MSC-Garments | Feedback </title>
-        <?php
-        include 'cssfile.php';
-        ?>
-    </head>
-    <body>
-        <header id="header"><!--header-->
-            <div class="header_top navbar-fixed-top"><!--header_top-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 ">
-                            <div class="contactinfo">
-                                <ul class="nav nav-pills">
-                                    <li><a href="index.php"><i class="fa fa-home"></i> MSC-GARMENTS</a></li>
-                                    <li><a href="tel:+84123456789"><i class="fa fa-phone"></i> 09813757730 </a></li>
-                                    <li><a href="mailto:ahkk9866@gmail.com"><i class="fa fa-envelope"></i> mscgarments@gmail.com</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="social-icons pull-right">
-                                <ul class="nav navbar-nav">
-                                     <li><a href="https://www.facebook.com/marinduquestatecollege/"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://www.facebook.com/marinduquestatecollege/"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="https://www.facebook.com/marinduquestatecollege/"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="https://www.facebook.com/marinduquestatecollege/"><i class="fa fa-dribbble"></i></a></li>
-                                    <li><a href="https://www.facebook.com/marinduquestatecollege/"><i class="fa fa-google-plus"></i></a></li>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
 
-                                    <li><a style="height: 37px;" href="#" id="cart_container" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart function_for_user_span"></span>Cart<span class="badge"> 0</span></a>
-                                        <div class="dropdown-menu function_for_user" style="width:500px; margin-left: -540px">
-                                            <div class="panel panel-success">
-                                                <div class="panel-heading">
-                                                    <div class="row">
-                                                        <div class="col-md-3 col-xs-3">Sequence Number</div>
-                                                        <div class="col-md-3 col-xs-3">Items</div>
-                                                        <div class="col-md-3 col-xs-3">Product Name</div>
-                                                        <div class="col-md-3 col-xs-3">Price</div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div id="cart_product">
-                                                        <div class="row">
-                                                                <div class="col-md-3">Sl.No</div>
-                                                                <div class="col-md-3">Product Image</div>
-                                                                <div class="col-md-3">Product Name</div>
-                                                                <div class="col-md-3">Price in PHP.</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-footer"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>&nbsp</li>
-                                    <li><a style="height: 37px;" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user function_for_user_span"></span></a>
-                                        <ul style="height: 130px;" class="dropdown-menu">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="dist/css/home_admin.css">
+	<link rel="stylesheet" type="text/css"  href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	
 
-                                            <li><a href="cart.php" style="font-size: 17px; text-decoration:none; color:#38761d;"><span class="fa fa-archive"> Cart</a></li>
-                                            <li><a href="" style="font-size: 17px; text-decoration:none; color:#38761d;"><span class="fa fa-refresh"> Change password</a></li>
+	<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
 
-                                            <li><a href="logout.php" style="font-size: 17px; text-decoration:none; color:#38761d;"><span class="fa fa-reply"> Sign Out</a></li>    </li>
-                       <li><a href="customer_registration.php" class="function_for_user"<span class="glyphicon glyphicon-user function_for_user_span"></span>Register</a></li>
-                                        </ul>
-                                
+	<link rel="stylesheet" type="text/css"  href="bower_components/datatables/media/css/jquery.dataTables.min.css">
+</head>
+<body>
+	<?php
+session_start();
+if(!isset($_SESSION["username"])){
+header("Location: index.php");
+ }
+ ?>
+	<?php
+    require_once("connection.php");
+    error_reporting(2);
+  ?>
+	<nav class="navbar navbar-default sidebar navbar-static-top">
+    <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
+			MENU
+			</button>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<h3 style="color: yellow;">Welcome Administrator Page</h3>
+				
+			
+		</div>
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--/header_top-->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<form class="navbar-form navbar-left" method="GET" role="search">
+				<div class="form-group">
+					<input type="text" name="q" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+			</form> -->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Account
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i>User Information</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i>Install</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i>Sign Out</a>
+                            </li>
+                        </ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="container-fluid main-container">
+  		<div class="col-md-2 sidebar">
+  			<div class="row">
+	<!-- uncomment code for absolute positioning tweek see top comment in css -->
+	<div class="absolute-wrapper"> </div>
+	<!-- Menu -->
+	<div class="side-menu">
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Main Menu -->
+			<div class="side-menu-container">
+				<ul class="nav navbar-nav">
 
-            <div class="header-middle"><!--header-middle-->
-                <div class="container">
-                    <div class="row" style="
-                         margin-top: 37px;
-                         ">
-                        <div class="col-sm-4">
-                            <div class="logo pull-left">
-                                <a href="index.php"><img alt="" src="images/logoheader.png"></a>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="shop-menu pull-right">
-                                <ul class="nav navbar-nav">
+					<li style="" class="active"><a style="color: white;background: #38761d;" href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+					<li><a href="category-list.php"><span class="glyphicon glyphicon-plane"></span> Product Categories</a></li>
+					<li><a href="brand-list.php"><span class="glyphicon glyphicon-cloud"></span> Product </a></li>
+
+					<!-- Dropdown-->
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#dropdown-lvl1">
+							<span class="glyphicon glyphicon-signal"></span> Product <span class="caret"></span>
+						</a>
+
+						<!-- Dropdown level 1 -->
+						<div id="dropdown-lvl1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">
+									<li><a href="product-list.php">Product List</a></li>
+									<li><a href="product_add.php">Add products</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#dropdown-lvl2">
+							<span class="fa fa-shopping-cart"></span> Orders <span class="caret"></span>
+						</a>
+
+						<!-- Dropdown level 1 -->
+						<div id="dropdown-lvl2" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">
+									<li><a href="cart-list.php">Order List</a></li>
+									<li><a href="product_add.php">New orders</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+					<li><a href="user-list.php" class="glyphicon glyphicon-user"><span ></span> User management</a></li>
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#dropdown-lvl3">
+							<span class="glyphicon glyphicon-comment"></span>Contact <span class="caret"></span>
+						</a>
+
+						<!-- Dropdown level 1 -->
+						<div id="dropdown-lvl3" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">
+									<li><a href="contact-list.php">Contact messages</a></li>
+									<li><a href="contact-new.php">Unread messages</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li><a href="slide.php" class="glyphicon glyphicon-th"><span ></span> Administer Slide Show</a></li>
 
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--/header-middle-->
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
 
-            <div class="header-bottom"><!--header-bottom-->
-                <div class="container">
-                    <div class="row menu">
-                        <div class="col-sm-8">
-                            <div class="navbar-header">
-                                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class=" mainmenu pull-left">
-                                 <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <li class="menuhover"><a  href="index.php">Home</a></li>
-                                    <li class="menuhover"><a href="">About</a></li>
-                                    <li class="menuhover"><a href="https://www.mscmarinduque.edu.ph/">Preview</a></li>
-                                    <li class="menuhover"><a href="">Products </a></li>
-                                    <li class="menuhover"><a href="">Services</a></li>
-                                    <li class="menuhover"><a href="">Organization</a></li>
-                                    <li class="menuhover"><a href="contact.php">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                                            <div class="">
-                                                            <input type="text" class="form-control" id="search" >
-                                                        </div>
-                                                        <div>
-                                                            <input type="button" class="btn btn-primary" id="search_btn" value="Search">
-                                                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       </head>
+	</div>
+ </div>
+</div>
